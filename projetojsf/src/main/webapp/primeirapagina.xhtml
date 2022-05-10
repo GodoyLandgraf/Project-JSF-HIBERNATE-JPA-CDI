@@ -13,50 +13,68 @@
 	<h1>Teste</h1>
 	<h:form id="formPessoa">
 	
+	<h:panelGrid columns="2">
+	<f:facet name="header">
+	<h:outputText value="Cadastro em JSF"/>
+	</f:facet>
+	
+	
 	<h:outputLabel value="Id"/>
 	<h:inputText value="#{pessoaBean.pessoa.id}" readonly="true"/>
-		<br/>
+		
 	<h:outputLabel value="Nome"/>
 		<h:inputText value="#{pessoaBean.pessoa.nome}"/>
-		<br/>
+		
 			<h:outputLabel value="Sobrenome"/>
 		<h:inputText value="#{pessoaBean.pessoa.sobrenome}"/>
-			<br/>
+			
 			<h:outputLabel value="Idade"/>
 		<h:inputText value="#{pessoaBean.pessoa.idade}"/>
-			<br/>
-		
-		<br/>
+			
+	
+		<h:outputLabel/>
+		<h:panelGroup>
 		<h:commandButton value="Novo" action="#{pessoaBean.novo}"/>
 		<h:commandButton value="Salvar" action="#{pessoaBean.salvar}"/>
 		<h:commandButton value="Remover" action="#{pessoaBean.remove}"/>
+		</h:panelGroup>
 		
+		</h:panelGrid>
 		
-		<h:dataTable value="#{pessoaBean.pessoas}" var ="pessoa">
+		<h:dataTable value="#{pessoaBean.pessoas}" var ="pessoa" border="1" cellpadding="6">	
+		<f:facet name="header">
+		Lista de pessoas cadastradas
+		</f:facet>
 		<h:column>
+		<f:facet name="header">ID</f:facet>
 		<h:outputText value="#{pessoa.id}"/>
 		</h:column>
 		<h:column>
+	    <f:facet name="header">Nome</f:facet>
 		<h:outputText value="#{pessoa.nome}"/>
 		</h:column>
 		<h:column>
+		<f:facet name="header">Sobrenome</f:facet>	
 		<h:outputText value="#{pessoa.sobrenome}"/>
 		</h:column>
 		<h:column>
+		<f:facet name="header">Idade</f:facet>
 		<h:outputText value="#{pessoa.idade}"/>
 		</h:column>
 		
 		<h:column>
+		<f:facet name="header">Editar</f:facet>
 		<h:commandLink value="Editar">
 		<f:setPropertyActionListener value="#{pessoa}" target="#{pessoaBean.pessoa}"></f:setPropertyActionListener>
 		</h:commandLink>
 		</h:column>
-		
 		<h:column>
+		<f:facet name="header">Excluir</f:facet>
 		<h:commandLink value="Excluir" action="#{pessoaBean.remove}">
 		<f:setPropertyActionListener value="#{pessoa}" target="#{pessoaBean.pessoa}"></f:setPropertyActionListener>
 		</h:commandLink>
 		</h:column>
+		
 		
 		
 		</h:dataTable>
