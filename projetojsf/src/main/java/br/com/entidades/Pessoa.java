@@ -28,12 +28,20 @@ public class Pessoa implements Serializable{
 		
 		private Integer idade;
 		
+		private String sexo;
+		
+		private String[] frameworks;
+		
+		private Boolean ativo;
+		
+		
 		@Temporal(TemporalType.DATE)
 		private Date dataNascimento;
 		
 		
 		public Pessoa() {
 		}
+		
 		
 		
 		
@@ -67,11 +75,42 @@ public class Pessoa implements Serializable{
 		public void setDataNascimento(Date dataNascimento) {
 			this.dataNascimento = dataNascimento;
 		}
+		
+		public String getSexo() {
+			return sexo;
+		}
+
+		public void setSexo(String sexo) {
+			this.sexo = sexo;
+		}
+
+		
+		
+		public String[] getFrameworks() {
+			return frameworks;
+		}
 
 
+
+		public void setFrameworks(String[] frameworks) {
+			this.frameworks = frameworks;
+		}
+
+		
+		public Boolean getAtivo() {
+			return ativo;
+		}
+
+
+		public void setAtivo(Boolean ativo) {
+			this.ativo = ativo;
+		}
+		
 		
 		
 		/* No banco de dados vai usar o Id para separar os registros. Equal e HashCode é o atributo q vai diferenciar*/
+
+
 
 		@Override
 		public int hashCode() {
