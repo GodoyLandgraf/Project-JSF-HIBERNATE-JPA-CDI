@@ -32,7 +32,13 @@ public class Pessoa implements Serializable{
 		
 		private String[] frameworks;
 		
-		private Boolean ativo;
+		private Boolean ativo;  //colocar o Objeto Boolean (maiúsculo)
+		
+		private String login;
+		
+		private String senha;
+		
+		private String perfilUser;
 		
 		
 		@Temporal(TemporalType.DATE)
@@ -106,9 +112,51 @@ public class Pessoa implements Serializable{
 			this.ativo = ativo;
 		}
 		
-		
+		public String getLogin() {
+			return login;
+		}
+
+
+
+
+		public void setLogin(String login) {
+			this.login = login;
+		}
+
+
+
+
+		public String getSenha() {
+			return senha;
+		}
+
+
+
+
+		public void setSenha(String senha) {
+			this.senha = senha;
+		}
+
+
+		public String getPerfilUser() {
+			return perfilUser;
+		}
+
+
+
+
+		public void setPerfilUser(String perfilUser) {
+			this.perfilUser = perfilUser;
+		}
+
 		
 		/* No banco de dados vai usar o Id para separar os registros. Equal e HashCode é o atributo q vai diferenciar*/
+
+
+
+	
+
+
 
 
 

@@ -7,19 +7,15 @@
 
 <!-- tags de texto, tabela e quebra de linha PODEM SER usados em HTML misturado com JSF -->
 <h:head>
-	<title>Olá JSF</title>
+	<title>Cadastro de Usuário</title>
 </h:head>
 <h:body>
 	
 	<h:form id="formPessoa">
 	
-	<h:graphicImage height="50" width="50"
-	library="img" name="logotipo.png"/>
-		<h1>Olá JSF</h1>
-	
 	<h:panelGrid columns="2">
 	<f:facet name="header">
-	<h:outputText value="Cadastro em JSF"/>
+	<h:outputText value="Cadastro de Usuário"/>
 	</f:facet>
 	
 	
@@ -57,12 +53,24 @@
 		 	 <h:outputLabel value="Ativo"/>
 		 <h:selectBooleanCheckbox value="#{pessoaBean.pessoa.ativo}"/>
 		 
+			<h:outputLabel value="Login: "/>
+			<h:inputText value="#{pessoaBean.pessoa.login}"/>
 			
+			<h:outputLabel value="Senha: "/>
+			<h:inputSecret value="#{pessoaBean.pessoa.senha}"/>
+			
+			<h:outputLabel value="Perfil"/>
+		<h:selectOneMenu id="perfil" value="#{pessoaBean.pessoa.perfilUser}">
+		<f:selectItem itemLabel="[-Selecione-]"  noSelectionOption="true"/>
+		<f:selectItem itemValue="ADMINISTRADOR" itemLabel="Administrador"/>
+		<f:selectItem itemValue="SECRETARIO" itemLabel="Secretário"/>
+		<f:selectItem itemValue="RECEPCIONISTA" itemLabel="Recepcionista"/>
+		 </h:selectOneMenu>
 	
 		<h:outputLabel/>
 		<h:panelGroup>
-		<h:commandButton value="Novo" action="#{pessoaBean.novo}" image="/resources/img/novo-usuario.png"/>
-		<h:commandButton value="Salvar" action="#{pessoaBean.salvar}" image="/resources/img/salvar-silhueta-de-icone.png"/>
+		<h:commandButton  value="Novo" action="#{pessoaBean.novo}" image="/resources/img/novo-usuario.png"/>
+		<h:commandButton   value="Salvar" action="#{pessoaBean.salvar}" image="/resources/img/salvar-silhueta-de-icone.png"/>
 		<h:commandButton value="Remover" action="#{pessoaBean.remove}"/>
 		<h:commandButton value="Limpar" type="reset"/>
 		</h:panelGroup>
@@ -71,7 +79,7 @@
 		
 		<h:dataTable value="#{pessoaBean.pessoas}" var ="pessoa" border="1" cellpadding="6">	
 		<f:facet name="header">
-		Lista de pessoas cadastradas
+		Lista usuários cadastrados
 		</f:facet>
 		<h:column>
 		<f:facet name="header">ID</f:facet>
