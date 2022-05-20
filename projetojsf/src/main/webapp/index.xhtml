@@ -6,29 +6,22 @@
 
 <!-- tags de texto, tabela e quebra de linha PODEM SER usados em HTML misturado com JSF -->
 <h:head>
-	<title>Olá JSF</title>
+	<title>Login</title>
 </h:head>
 <h:body>
-	<h:form id="formPessoa">
+	<h:form id="formLogin" style="margin-top:22%; margin-left:40%">
 		
-		<h1> Olá JSF</h1>
+		<h1> Realize o Login</h1>
 		
-		<script>
-		function alteraValorCampo(){
-			var campo = document.getElementById('formPessoa:nome');
-			campo.value = 'eu cliquei no campo :)'		;
-		}
-		</script>
+		<h:panelGrid columns="2">
+		<h:outputLabel value="Login: "/>
+		<h:inputText value="#{pessoaBean.pessoa.login}"/>
+			<h:outputLabel value="Senha: "/>
+		<h:inputSecret value="#{pessoaBean.pessoa.senha}"/>
+		<h:commandButton value="Acessar" action="#{pessoaBean.logar}"/>
 		
-		<h:inputText id="nome" onclick="this.value = 'troquei o valor'" onchange="this.value = this.value.toUpperCase();"></h:inputText>
-		
-		<br/>
-		<br/>
-		<h:commandButton value="Clicar"  onclick="alteraValorCampo();"></h:commandButton>
-		
+		</h:panelGrid>
 	
-		<!-- Navegação implícita (definida direto no action do xhtml) -->
-		<h:commandButton value="Navegar" action="primeirapagina"> </h:commandButton>
 
 	</h:form>
 </h:body>

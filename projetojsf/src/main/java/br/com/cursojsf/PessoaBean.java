@@ -10,6 +10,8 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.component.html.HtmlCommandButton;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import javax.persistence.PostLoad;
 import javax.persistence.PostPersist;
 
@@ -17,6 +19,8 @@ import org.hibernate.service.spi.InjectService;
 
 import br.com.dao.DaoGeneric;
 import br.com.entidades.Pessoa;
+import br.com.repository.IDaoPessoa;
+import br.com.repository.IDaoPessoaImp;
 
 
 //@ApplicationScoped       //TODOS OS USUÁRIOS compartilham os mesmos dados
@@ -29,7 +33,7 @@ public class PessoaBean {
 	private Pessoa pessoa = new Pessoa();
 	private DaoGeneric<Pessoa> daoGeneric = new DaoGeneric<Pessoa>();
 	private List<Pessoa> pessoas = new ArrayList<Pessoa>();
-	
+	private IDaoPessoa iDaoPessoa = new IDaoPessoaImp();
 	
 	
 	public String salvar() {
@@ -66,6 +70,21 @@ public void carregarPessoas() {
 
 	public List<Pessoa> getPessoas() {
 		return pessoas;
+	}
+	
+	public String logar() {
+		Pessoa pessoaUser = iDaoPessoa.consultarUsuario(pessoa.getLogin(), pessoa.getSenha());
+		if(pessoaUser != null) {
+			
+			//adiciona o usuário na sessão usuarioLogado
+			FacesContext context = FacesContext.getCurrentInstance();
+			ExternalContext externalContext = context.getExternalContext();
+			externalContext.getSessionMap().put("usuarioLogado", pessoaUser.getLogin());
+			
+			return "primeirapagina.xhtml";
+		}
+		return "index.xhtml";
+		
 	}
 	
 		
