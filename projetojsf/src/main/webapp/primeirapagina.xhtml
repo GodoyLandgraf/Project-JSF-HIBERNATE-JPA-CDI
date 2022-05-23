@@ -10,8 +10,16 @@
 	<title>Cadastro de Usuário</title>
 </h:head>
 <h:body>
+
+
+<h:form>
+<h:commandLink value="Administração" action="primeirapagina" rendered="#{pessoaBean.permiteAcesso('ADMINISTRADOR')}"/>
+<h:commandLink style ="margin-left:1cm;" value="Lançamentos" action="lancamento"/>
+<h:commandLink style ="margin-left:1cm;" value="Trocar Usuário" action="index"/>
+
+</h:form>
 	
-	<h:form id="formPessoa">
+	<h:form id="formPessoa" rendered="#{pessoaBean.permiteAcesso('ADMINISTRADOR')}">
 	
 	<h:panelGrid columns="2">
 	<f:facet name="header">
@@ -70,9 +78,9 @@
 		<h:outputLabel/>
 		<h:panelGroup>
 		<h:commandButton  value="Novo" action="#{pessoaBean.novo}" image="/resources/img/novo-usuario.png"/>
-		<h:commandButton   value="Salvar" action="#{pessoaBean.salvar}" image="/resources/img/salvar-silhueta-de-icone.png"/>
-		<h:commandButton value="Remover" action="#{pessoaBean.remove}" image="/resources/img/excluir.png" rendered="#{pessoaBean.permiteAcesso('ADMINISTRADOR')}"/>
-		<h:commandButton value="Limpar" type="reset" image="/resources/img/clean.png"/>
+		<h:commandButton   style ="margin-left:0.7cm;" value="Salvar" action="#{pessoaBean.salvar}" image="/resources/img/salvar-silhueta-de-icone.png"/>
+		<h:commandButton style ="margin-left:0.7cm;" value="Remover" action="#{pessoaBean.remove}" image="/resources/img/excluir.png" rendered="#{pessoaBean.permiteAcesso('ADMINISTRADOR')}"/>
+		<h:commandButton style ="margin-left:0.7cm;" value="Limpar" type="reset" image="/resources/img/clean.png"/>
 		</h:panelGroup>
 		
 		</h:panelGrid>
