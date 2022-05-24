@@ -36,9 +36,13 @@ public class Pessoa implements Serializable{
 		
 		private String login;
 		
+		private String nivelProgramador;
+		
 		private String senha;
 		
 		private String perfilUser;
+		
+		private Integer[] linguagens;
 		
 		
 		@Temporal(TemporalType.DATE)
@@ -149,12 +153,32 @@ public class Pessoa implements Serializable{
 			this.perfilUser = perfilUser;
 		}
 
+
+		public String getNivelProgramador() {
+			return nivelProgramador;
+		}
+
+
+
+
+		public void setNivelProgramador(String nivelProgramador) {
+			this.nivelProgramador = nivelProgramador;
+		}
+
+		
+		public void setLinguagens(Integer[] linguagens) {
+			this.linguagens = linguagens;
+		}
+		
+		public Integer[] getLinguagens() {
+			return linguagens;
+		}
+		
+	
 		
 		/* No banco de dados vai usar o Id para separar os registros. Equal e HashCode é o atributo q vai diferenciar*/
 
 
-
-	
 
 
 
