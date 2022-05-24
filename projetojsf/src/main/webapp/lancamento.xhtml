@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-	 xmlns:f = "http://java.sun.com/jsf/core">  <!-- IMPORTAÇÃO JSF IMPORTANTE FAZER -->
+	 xmlns:f = "http://java.sun.com/jsf/core"
+	 xmlns:ui = "http://java.sun.com/jsf/facelets">  <!-- IMPORTAÇÃO JSF IMPORTANTE FAZER -->
 
 
 <!-- tags de texto, tabela e quebra de linha PODEM SER usados em HTML misturado com JSF -->
@@ -11,14 +12,9 @@
 </h:head>
 <h:body>
 
-	<h:form>
-<h:commandLink value="Administração" action="primeirapagina" rendered="#{pessoaBean.permiteAcesso('ADMINISTRADOR')}"/>
-<h:commandLink style ="margin-left:1cm;" value="Lançamentos" action="lancamento"/>
-<h:commandLink style ="margin-left:1cm;" value="Trocar Usuário" action="index"/>
-</h:form>
-	<h:form id="formLancamento">
-		
+	<ui:include src="menu.xhtml"></ui:include>
 	
+	<h:form id="formLancamento">
 
 		<h:panelGrid columns="2">
 		<f:facet name="header">

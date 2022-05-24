@@ -60,6 +60,7 @@ public class PessoaBean {
 		daoGeneric.deletePorId(pessoa);
 		pessoa=new Pessoa();
 		carregarPessoas();
+		mostrarMsg("Removido com sucesso!");
 		return "";
 	}
 
