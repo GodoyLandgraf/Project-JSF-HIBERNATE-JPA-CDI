@@ -28,7 +28,9 @@
 	<h:inputText value="#{pessoaBean.pessoa.id}" readonly="true"/>
 		
 	<h:outputLabel value="Nome"/>
-		<h:inputText value="#{pessoaBean.pessoa.nome}"/>
+		<h:inputText value="#{pessoaBean.pessoa.nome}" required="true" requiredMessage="Informe nome do usuário" validatorMessage="Nome tem que ter no mínimo 10 letras"> 
+		<f:validateLength minimum="10" maximum="50" />
+		</h:inputText>
 		
 			<h:outputLabel value="Sobrenome"/>
 		<h:inputText value="#{pessoaBean.pessoa.sobrenome}"/>
@@ -43,6 +45,11 @@
 		<f:selectItem itemValue="M" itemLabel="Masculino"/>
 		<f:selectItem itemValue="F" itemLabel="Feminino"/>
 		 </h:selectOneMenu>
+		 
+		 <h:outputLabel value="Nascimento: "/>
+		 <h:inputText value="#{pessoaBean.pessoa.dataNascimento}" converterMessage="Data de nascimento errada!">
+		 <f:convertDateTime pattern="dd/MM/yyyy" locale="pt_BR" timeZone="GMT-03:00"/>
+		 </h:inputText>
 		 
 		 
 		 <h:outputLabel value="Frameworks"/>

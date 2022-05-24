@@ -43,10 +43,10 @@ public class Pessoa implements Serializable{
 		private String perfilUser;
 		
 		private Integer[] linguagens;
-		
-		
+	
+
 		@Temporal(TemporalType.DATE)
-		private Date dataNascimento;
+		private Date dataNascimento = new Date();
 		
 		
 		public Pessoa() {
