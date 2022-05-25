@@ -1,5 +1,10 @@
 package br.com.cursojsf;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,10 +18,13 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.component.html.HtmlCommandButton;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.faces.event.AjaxBehaviorEvent;
 import javax.persistence.PostLoad;
 import javax.persistence.PostPersist;
 
 import org.hibernate.service.spi.InjectService;
+
+import com.google.gson.Gson;
 
 import br.com.dao.DaoGeneric;
 import br.com.entidades.Pessoa;
@@ -53,8 +61,40 @@ public class PessoaBean {
 	public String novo(){
 		pessoa=new Pessoa();
 		return "";
+	}
+	
+	public void pesquisaCep(AjaxBehaviorEvent event) {
+		try {
+			URL url = new URL("https://viacep.com.br/ws/"+pessoa.getCep()+"/json/");
+			URLConnection connection = url.openConnection();
+			InputStream is = connection.getInputStream();
+			BufferedReader br = new BufferedReader(new InputStreamReader(is,"UTF-8"));
+			String cep = "";
+			StringBuilder jsonCep = new StringBuilder();
+			while ((cep = br.readLine()) !=null) {
+				jsonCep.append(cep);
+			}
+			//transforma o resultado para um objeto para auxiliar (pessoa.class tem que ter os mesmos atributos do json)
+			Pessoa gson = new Gson().fromJson(jsonCep.toString(), Pessoa.class);
+			//seta para o objeto controlado
+			pessoa.setCep(gson.getCep());
+			pessoa.setLogradouro(gson.getLogradouro());
+			pessoa.setComplemento(gson.getComplemento());
+			pessoa.setBairro(gson.getBairro());
+			pessoa.setLocalidade(gson.getLocalidade());
+			pessoa.setUf(gson.getUf());
+			pessoa.setIbge(gson.getIbge());
+			pessoa.setGia(gson.getGia());
+			
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			mostrarMsg("Erro ao consultar o CEP");
+		}
 		
 	}
+	
 	
 	public String remove() {
 		daoGeneric.deletePorId(pessoa);

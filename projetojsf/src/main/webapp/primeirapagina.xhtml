@@ -61,6 +61,33 @@
 		<f:selectItem itemValue="JSF"/>
 		 </h:selectManyMenu>
 		 
+		 <h:outputLabel value="CEP: "/>
+		 <h:inputText value="#{pessoaBean.pessoa.cep}">
+		 <f:ajax event="blur" execute="@this" listener="#{pessoaBean.pesquisaCep}"
+		  render="logradouro complemento bairro localidade uf ibge gia"/>
+		 </h:inputText>
+		 
+		  <h:outputLabel value="Logradouro: "/>
+		  <h:inputText id = "logradouro" value="#{pessoaBean.pessoa.logradouro}"/>
+		  
+		  <h:outputLabel value="Complemento: "/>
+		  <h:inputText id = "complemento" value="#{pessoaBean.pessoa.complemento}"/>
+		  
+		  <h:outputLabel value="Bairro: "/>
+		  <h:inputText id = "bairro" value="#{pessoaBean.pessoa.bairro}"/>
+		  
+		  <h:outputLabel value="Localidade: "/>
+		  <h:inputText id = "localidade" value="#{pessoaBean.pessoa.localidade}"/>
+		  
+		  <h:outputLabel value="UF: "/>
+		  <h:inputText id = "uf" value="#{pessoaBean.pessoa.uf}"/>
+		  
+		  <h:outputLabel value="IBGE: "/>
+		  <h:inputText id = "ibge" value="#{pessoaBean.pessoa.ibge}"/>
+		  
+		  <h:outputLabel value="GIA: "/>
+		  <h:inputText id = "gia" value="#{pessoaBean.pessoa.gia}"/>
+		  
 		 
 		 
 		 	 <h:outputLabel value="Ativo"/>
@@ -100,14 +127,19 @@
 	
 		<h:outputLabel/>
 		<h:panelGroup>
-		<h:commandButton  value="Novo" action="#{pessoaBean.novo}" image="/resources/img/novo-usuario.png"/>
-		<h:commandButton   style ="margin-left:0.7cm;" value="Salvar" action="#{pessoaBean.salvar}" image="/resources/img/salvar-silhueta-de-icone.png"/>
-		<h:commandButton style ="margin-left:0.7cm;" value="Remover" action="#{pessoaBean.remove}" image="/resources/img/excluir.png" rendered="#{pessoaBean.permiteAcesso('ADMINISTRADOR')}"/>
-		<h:commandButton style ="margin-left:0.7cm;" value="Limpar" type="reset" image="/resources/img/clean.png"/>
+		<h:commandButton  value="Novo" id="botaoNovo" action="#{pessoaBean.novo}" image="/resources/img/novo-usuario.png" title="Novo">
+		<f:ajax execute="botaoNovo" render="@form"/>
+		</h:commandButton>
+		<h:commandButton   style ="margin-left:0.7cm;" value="Salvar" action="#{pessoaBean.salvar}" image="/resources/img/salvar-silhueta-de-icone.png" title="Salvar"/>
+		<h:commandButton style ="margin-left:0.7cm;" value="Remover" action="#{pessoaBean.remove}" image="/resources/img/excluir.png" rendered="#{pessoaBean.permiteAcesso('ADMINISTRADOR')}" title="Excluir"/>
+		<h:commandButton style ="margin-left:0.7cm;" id="botaoLimpar" value="Limpar" action="#{pessoaBean.novo}" image="/resources/img/clean.png" title="Limpar">
+		<f:ajax execute="botaoLimpar" render="@form"/>
+		</h:commandButton>
 		</h:panelGroup>
 		
 		</h:panelGrid>
-		
+		</h:form >
+		<h:form id="formTable">
 		<h:dataTable value="#{pessoaBean.pessoas}" var ="pessoa" border="1" cellpadding="6">	
 		<f:facet name="header">
 		Lista usuários cadastrados
@@ -148,7 +180,6 @@
 		
 		
 		</h:dataTable>
-	
 	</h:form>
 </h:body>
 
