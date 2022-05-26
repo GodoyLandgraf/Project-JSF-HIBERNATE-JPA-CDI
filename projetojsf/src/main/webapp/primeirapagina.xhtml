@@ -1,14 +1,15 @@
-<?xml version="1.0" encoding="ISO-8859-1" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html" 
 	 xmlns:f = "http://java.sun.com/jsf/core"
-	 xmlns:ui = "http://java.sun.com/jsf/facelets">  <!-- IMPORTAÇÃO JSF IMPORTANTE FAZER  CORE DA SUPORTE AOS ELEMENTOS E HTML É OS ELEMENTOS-->
+	 xmlns:ui = "http://java.sun.com/jsf/facelets"
+	 xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">  <!-- IMPORTAÃ‡ÃƒO JSF IMPORTANTE FAZER  CORE DA SUPORTE AOS ELEMENTOS E HTML Ã‰ OS ELEMENTOS-->
 	
 
 <!-- tags de texto, tabela e quebra de linha PODEM SER usados em HTML misturado com JSF -->
 <h:head>
-	<title>Cadastro de Usuário</title>
+	<title>Cadastro de UsuÃ¡rio</title>
 </h:head>
 <h:body>
 
@@ -20,7 +21,7 @@
 	
 	<h:panelGrid columns="2">
 	<f:facet name="header">
-	<h:outputText value="Cadastro de Usuário"/>
+	<h:outputText value="Cadastro de UsuÃ¡rio"/>
 	</f:facet>
 	
 	
@@ -28,15 +29,15 @@
 	<h:inputText value="#{pessoaBean.pessoa.id}" readonly="true"/>
 		
 	<h:outputLabel value="Nome"/>
-		<h:inputText value="#{pessoaBean.pessoa.nome}" required="true" requiredMessage="Informe nome do usuário" validatorMessage="Nome tem que ter no mínimo 10 letras"> 
+		<h:inputText value="#{pessoaBean.pessoa.nome}" required="true" requiredMessage="Informe nome do usuÃ¡rio" validatorMessage="Nome tem que ter no mÃ­nimo 10 letras" pt:placeholder="Informe o nome do usuÃ¡rio"> 
 		<f:validateLength minimum="10" maximum="50" />
 		</h:inputText>
 		
 			<h:outputLabel value="Sobrenome"/>
-		<h:inputText value="#{pessoaBean.pessoa.sobrenome}"/>
+		<h:inputText value="#{pessoaBean.pessoa.sobrenome}"  pt:placeholder="Informe o sobrenome "/>
 			
 			<h:outputLabel value="Idade"/>
-		<h:inputText value="#{pessoaBean.pessoa.idade}"/>
+		<h:inputText value="#{pessoaBean.pessoa.idade}" pt:placeholder="Informe a idade"/>
 		
 		
 		<h:outputLabel value="Sexo"/>
@@ -62,7 +63,7 @@
 		 </h:selectManyMenu>
 		 
 		 <h:outputLabel value="CEP: "/>
-		 <h:inputText value="#{pessoaBean.pessoa.cep}">
+		 <h:inputText value="#{pessoaBean.pessoa.cep}" pt:placeholder="Informe o CEP">
 		 <f:ajax event="blur" execute="@this" listener="#{pessoaBean.pesquisaCep}"
 		  render="logradouro complemento bairro localidade uf ibge gia"/>
 		 </h:inputText>
@@ -94,16 +95,16 @@
 		 <h:selectBooleanCheckbox value="#{pessoaBean.pessoa.ativo}"/>
 		 
 			<h:outputLabel value="Login: "/>
-			<h:inputText value="#{pessoaBean.pessoa.login}"/>
+			<h:inputText value="#{pessoaBean.pessoa.login}" pt:placeholder="Informe o login"/>
 			
 			<h:outputLabel value="Senha: "/>
-			<h:inputSecret value="#{pessoaBean.pessoa.senha}"/>
+			<h:inputSecret value="#{pessoaBean.pessoa.senha}" pt:placeholder="Informe a senha"/>
 			
 			<h:outputLabel value="Perfil"/>
 		<h:selectOneMenu id="perfil" value="#{pessoaBean.pessoa.perfilUser}">
 		<f:selectItem itemLabel="[-Selecione-]"  noSelectionOption="true"/>
 		<f:selectItem itemValue="ADMINISTRADOR" itemLabel="Administrador"/>
-		<f:selectItem itemValue="SECRETARIO" itemLabel="Secretário"/>
+		<f:selectItem itemValue="SECRETARIO" itemLabel="SecretÃ¡rio"/>
 		<f:selectItem itemValue="RECEPCIONISTA" itemLabel="Recepcionista"/>
 		 </h:selectOneMenu>
 	
@@ -124,6 +125,12 @@
 	<f:selectItem itemValue="5" itemLabel="Cobol"/>
 	</h:selectManyCheckbox>
 	
+	<h:outputLabel value="Estados">
+	<h:selectOneMenu value="#{pessoaBean.pessoa.estados}">
+	<f:selectItems value="#{pessoaBean.estados}"/>
+	</h:selectOneMenu>
+	</h:outputLabel>
+	
 	
 		<h:outputLabel/>
 		<h:panelGroup>
@@ -142,7 +149,7 @@
 		<h:form id="formTable">
 		<h:dataTable value="#{pessoaBean.pessoas}" var ="pessoa" border="1" cellpadding="6">	
 		<f:facet name="header">
-		Lista usuários cadastrados
+		Lista usuÃ¡rios cadastrados
 		</f:facet>
 		<h:column>
 		<f:facet name="header">ID</f:facet>

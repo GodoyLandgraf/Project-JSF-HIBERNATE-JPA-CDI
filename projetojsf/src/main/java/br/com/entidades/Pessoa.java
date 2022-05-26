@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 
 @Entity
@@ -59,6 +60,19 @@ public class Pessoa implements Serializable{
 		private String ibge;
 		
 		private String gia;
+		
+		
+		//Não fica persistente, não grava no banco e só fica em memora para ajudar na programação
+		@Transient
+		private Estados estados;
+		
+public void setEstados(Estados estados) {
+	this.estados = estados;
+}
+
+public Estados getEstados() {
+	return estados;
+}
 		
 		
 		
