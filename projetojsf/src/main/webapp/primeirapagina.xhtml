@@ -125,17 +125,22 @@
 	<f:selectItem itemValue="5" itemLabel="Cobol"/>
 	</h:selectManyCheckbox>
 	
-	<h:outputLabel value="Estados">
-	 <!-- immediate deixa enviar valores para o manageBean - quando usa ajax sempre é bom usar para não pegar as validaçoes do form -->
-	<h:selectOneMenu value="#{pessoaBean.pessoa.estados}" immediate="true">
+		
+	<h:outputLabel value="Estados: "/>
+	<h:selectOneMenu value="#{pessoaBean.pessoa.estados}" immediate="true"> <!--  immediate deixa enviar valores para o manageBean - quando usa ajax sempre é bom usar para não pegar as validaçoes do form -->
 	<f:selectItem itemLabel="-[-Selecione-]-" noSelectionOption="true"/>
 	<f:selectItems value="#{pessoaBean.estados}" var="est" itemValue="#{est.id}"/>
-	<f:ajax event="change" execute="@this" listener="#{pessoaBean.carregaCidades}"/>
+	<f:ajax event="change" execute="@this" listener="#{pessoaBean.carregaCidades}" render="comboCidade"/>
 	</h:selectOneMenu>
-	</h:outputLabel>
 	
+	<h:outputLabel value="Cidades: "/>
 	
-		<h:outputLabel/>
+	<h:selectOneMenu value="#{pessoaBean.pessoa.cidades}" id="comboCidade">
+	<f:selectItem itemLabel="-[-Selecione-]-" noSelectionOption="true"/>
+	<f:selectItems value="#{pessoaBean.cidades}" />
+	</h:selectOneMenu>
+
+<h:outputLabel/>
 		<h:panelGroup>
 		<h:commandButton  value="Novo" id="botaoNovo" action="#{pessoaBean.novo}" image="/resources/img/novo-usuario.png" title="Novo">
 		<f:ajax execute="botaoNovo" render="@form"/>
