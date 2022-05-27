@@ -126,8 +126,11 @@
 	</h:selectManyCheckbox>
 	
 	<h:outputLabel value="Estados">
-	<h:selectOneMenu value="#{pessoaBean.pessoa.estados}">
-	<f:selectItems value="#{pessoaBean.estados}"/>
+	 <!-- immediate deixa enviar valores para o manageBean - quando usa ajax sempre é bom usar para não pegar as validaçoes do form -->
+	<h:selectOneMenu value="#{pessoaBean.pessoa.estados}" immediate="true">
+	<f:selectItem itemLabel="-[-Selecione-]-" noSelectionOption="true"/>
+	<f:selectItems value="#{pessoaBean.estados}" var="est" itemValue="#{est.id}"/>
+	<f:ajax event="change" execute="@this" listener="#{pessoaBean.carregaCidades}"/>
 	</h:selectOneMenu>
 	</h:outputLabel>
 	
