@@ -127,7 +127,7 @@
 	
 		
 	<h:outputLabel value="Estados: "/>
-	<h:selectOneMenu value="#{pessoaBean.pessoa.estados}" immediate="true"> <!--  immediate deixa enviar valores para o manageBean - quando usa ajax sempre é bom usar para não pegar as validaçoes do form -->
+	<h:selectOneMenu value="#{pessoaBean.pessoa.estados}" immediate="true" id="comboEstados" converter="converterEstado"> <!--  immediate deixa enviar valores para o manageBean - quando usa ajax sempre é bom usar para não pegar as validaçoes do form -->
 	<f:selectItem itemLabel="-[-Selecione-]-" noSelectionOption="true"/>
 	<f:selectItems value="#{pessoaBean.estados}" var="est" itemValue="#{est.id}"/>
 	<f:ajax event="change" execute="@this" listener="#{pessoaBean.carregaCidades}" render="comboCidade"/>
@@ -135,7 +135,7 @@
 	
 	<h:outputLabel value="Cidades: "/>
 	
-	<h:selectOneMenu value="#{pessoaBean.pessoa.cidades}" id="comboCidade">
+	<h:selectOneMenu value="#{pessoaBean.pessoa.cidades}" id="comboCidade" immediate="true" converter="cidadeConverter">
 	<f:selectItem itemLabel="-[-Selecione-]-" noSelectionOption="true"/>
 	<f:selectItems value="#{pessoaBean.cidades}" />
 	</h:selectOneMenu>
@@ -178,7 +178,7 @@
 		
 		<h:column>
 		<f:facet name="header">Editar</f:facet>
-		<h:commandLink title="Editar">
+		<h:commandLink title="Editar" action="#{pessoaBean.editar}">
 		<f:setPropertyActionListener value="#{pessoa}" target="#{pessoaBean.pessoa}"></f:setPropertyActionListener>
 		<h:graphicImage value="/resources/img/editar.png"/>
 		</h:commandLink>
