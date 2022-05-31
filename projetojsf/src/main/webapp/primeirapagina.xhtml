@@ -15,7 +15,7 @@
 
 	<ui:include src="menu.xhtml"/>
 	
-	<h:form id="formPessoa" rendered="#{pessoaBean.permiteAcesso('ADMINISTRADOR')}">
+	<h:form id="formPessoa" enctype="multipart/form-data" rendered="#{pessoaBean.permiteAcesso('ADMINISTRADOR')}">
 	
 	<h:messages infoStyle="color:green"/>
 	
@@ -23,6 +23,9 @@
 	<f:facet name="header">
 	<h:outputText value="Cadastro de Usuário"/>
 	</f:facet>
+	
+	<h:outputLabel value="Foto: "/>
+	<h:inputFile id="foto" value="#{pessoaBean.arquivofoto}"></h:inputFile>
 	
 	
 	<h:outputLabel value="Id"/>
@@ -166,6 +169,13 @@
 		<h:column>
 	    <f:facet name="header">Nome</f:facet>
 		<h:outputText value="#{pessoa.nome}"/>
+		</h:column>
+		<h:column>
+	    <f:facet name="header">Foto</f:facet>
+	    <h:commandLink actionListener="#{pessoaBean.download}">
+		<h:graphicImage width="60" height="60" value="#{pessoa.fotoIconBase64}"></h:graphicImage>
+		<f:param name="fileDownloadId" value="#{pessoa.id}"></f:param>
+		</h:commandLink>
 		</h:column>
 		<h:column>
 		<f:facet name="header">Sobrenome</f:facet>	

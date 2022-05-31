@@ -4,10 +4,14 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
+import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -64,6 +68,15 @@ public class Pessoa implements Serializable{
 		
 		@ManyToOne
 		private Cidades cidades;
+		
+		@Column(columnDefinition="text") /*Grava arquivos em base 64 */
+		private String fotoIconBase64;
+		
+		private String extensao; /*extensao jps, png, jpeg... */
+		
+		@Lob /*Grava arquivos no banco de dados */
+		@Basic(fetch = FetchType.LAZY)
+		private byte[] fotoIconBase64Original;
 		
 		
 		//Não fica persistente, não grava no banco e só fica em memora para ajudar na programação
@@ -320,6 +333,29 @@ public Estados getEstados() {
 		}
 		
 
+		public String getFotoIconBase64() {
+			return fotoIconBase64;
+		}
+
+		public void setFotoIconBase64(String fotoIconBase64) {
+			this.fotoIconBase64 = fotoIconBase64;
+		}
+
+		public String getExtensao() {
+			return extensao;
+		}
+
+		public void setExtensao(String extensao) {
+			this.extensao = extensao;
+		}
+
+		public byte[] getFotoIconBase64Original() {
+			return fotoIconBase64Original;
+		}
+
+		public void setFotoIconBase64Original(byte[] fotoIconBase64Original) {
+			this.fotoIconBase64Original = fotoIconBase64Original;
+		}
 		
 		
 		/* No banco de dados vai usar o Id para separar os registros. Equal e HashCode é o atributo q vai diferenciar*/
@@ -328,6 +364,8 @@ public Estados getEstados() {
 
 
 
+
+		
 
 		@Override
 		public int hashCode() {
