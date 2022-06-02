@@ -16,6 +16,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.br.CPF;
+import org.hibernate.validator.constraints.br.TituloEleitoral;
 
 
 @Entity
@@ -28,10 +35,15 @@ public class Pessoa implements Serializable{
 		@GeneratedValue (strategy = GenerationType.AUTO)
 		private Long id;
 		
+		@NotEmpty
+		@Size(min = 10, max = 50, message = "Nome deve ter de 10 a 50 caracteres")
 		private String nome;
 		
+		@NotEmpty(message = "Sobrenome deve ser informado")
+		@NotNull(message = "Sobrenome deve ser informado")
 		private String sobrenome;
 		
+		@DecimalMin(value = "10", message = "Idade deve ser maior que 10 anos")
 		private Integer idade;
 		
 		private String sexo;
@@ -49,6 +61,12 @@ public class Pessoa implements Serializable{
 		private String perfilUser;
 		
 		private Integer[] linguagens;
+		
+		@CPF(message = "CPF invalido")
+		private String cpf;
+		
+		@TituloEleitoral(message = "Titulo Eleitoral inválido")
+		private String titEleitoral;
 		
 		private String cep;
 		
@@ -358,6 +376,24 @@ public Estados getEstados() {
 		}
 		
 		
+		public String getCpf() {
+			return cpf;
+		}
+
+		public void setCpf(String cpf) {
+			this.cpf = cpf;
+		}
+
+		public String getTitEleitoral() {
+			return titEleitoral;
+		}
+
+		public void setTitEleitoral(String titEleitoral) {
+			this.titEleitoral = titEleitoral;
+		}
+
+		
+
 		/* No banco de dados vai usar o Id para separar os registros. Equal e HashCode é o atributo q vai diferenciar*/
 
 
@@ -367,6 +403,7 @@ public Estados getEstados() {
 
 		
 
+	
 		@Override
 		public int hashCode() {
 			return Objects.hash(id);
