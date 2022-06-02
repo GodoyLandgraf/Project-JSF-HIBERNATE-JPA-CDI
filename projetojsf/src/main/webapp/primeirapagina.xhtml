@@ -32,7 +32,7 @@
 	<h:inputText value="#{pessoaBean.pessoa.id}" readonly="true"/>
 		
 	<h:outputLabel value="Nome"/>
-		<h:inputText value="#{pessoaBean.pessoa.nome}" required="true" requiredMessage="Informe nome do usuário" validatorMessage="Nome tem que ter no mínimo 10 letras" pt:placeholder="Informe o nome do usuário"> 
+		<h:inputText value="#{pessoaBean.pessoa.nome}" required="true" requiredMessage="Informe nome do usuário" validatorMessage="Nome tem que ter no mínimo 10 letras" pt:placeholder="Informe o nome do usuário" valueChangeListener="#{pessoaBean.mudancaDeValor}" > 
 		<f:validateLength minimum="10" maximum="50" />
 		</h:inputText>
 		
@@ -155,7 +155,7 @@
 		<f:ajax execute="botaoNovo" render="@form"/>
 		</h:commandButton>
 		<h:commandButton   style ="margin-left:0.7cm;" value="Salvar" action="#{pessoaBean.salvar}" image="/resources/img/salvar-silhueta-de-icone.png" title="Salvar" immediate="true"/>
-		<h:commandButton style ="margin-left:0.7cm;" value="Remover" action="#{pessoaBean.remove}" image="/resources/img/excluir.png" rendered="#{pessoaBean.permiteAcesso('ADMINISTRADOR')}" title="Excluir" immediate="true"/>
+		<h:commandButton style ="margin-left:0.7cm;" value="Remover" actionListener="#{pessoaBean.registraLog}" action="#{pessoaBean.remove}" image="/resources/img/excluir.png" rendered="#{pessoaBean.permiteAcesso('ADMINISTRADOR')}" title="Excluir" immediate="true"/>
 		<h:commandButton style ="margin-left:0.7cm;" id="botaoLimpar" value="Limpar" action="#{pessoaBean.novo}" image="/resources/img/clean.png" title="Limpar" immediate="true">
 		<f:ajax execute="botaoLimpar" render="@form"/>
 		</h:commandButton>
