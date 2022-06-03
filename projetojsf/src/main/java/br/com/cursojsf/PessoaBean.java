@@ -29,6 +29,8 @@ import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
 import javax.imageio.ImageIO;
+import javax.inject.Inject;
+import javax.persistence.EntityManager;
 import javax.persistence.PostLoad;
 import javax.persistence.PostPersist;
 import javax.servlet.http.HttpServletRequest;
@@ -61,6 +63,8 @@ public class PessoaBean {
 	private Pessoa pessoa = new Pessoa();
 	private DaoGeneric<Pessoa> daoGeneric = new DaoGeneric<Pessoa>();
 	private List<Pessoa> pessoas = new ArrayList<Pessoa>();
+	
+
 	private IDaoPessoa iDaoPessoa = new IDaoPessoaImp();
 	
 	private List<SelectItem> estados;
